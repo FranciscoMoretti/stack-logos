@@ -1,27 +1,24 @@
 import React from 'react';
 import Select from 'react-select';
-import logosData from "../logos/logos.json"
 
-export type LogoData = {
-  name:string,
-  shortname:string,
-  url:string,
-  files:string[],
+interface Option     {
+  label: string,
+  value: string,
 }
 
-const logos: Array<LogoData> = logosData;
+interface SelectorProps {
+  options: Option[],
+}
 
-const options = logos.map(logo => ({
-  label: logo.name,
-  value: logo.name,
-}))
+interface SelectorState {
+  selectedOption: Option,
+}
 
-
-export default class Selector extends React.Component {
-  state = {
-    selectedOption: null,
+export default class Selector extends React.Component<SelectorProps, SelectorState>  {
+  state: SelectorState = {
+    selectedOption: {label: "Placeholder", value: "Placeholder"},
   };
-  handleChange = (selectedOption) => {
+  handleChange = (selectedOption: any) => {
     this.setState({ selectedOption }, () =>
       console.log(`Option selected:`, this.state.selectedOption)
     );
@@ -33,7 +30,7 @@ export default class Selector extends React.Component {
       <Select
         value={selectedOption}
         onChange={this.handleChange}
-        options={options}
+        options={this.props.options}
       />
     );
   }

@@ -4,6 +4,23 @@ import Image from 'next/image'
 import LogoImage from '../components/LogoImage'
 import Selector from '../components/Selector'
 
+import logosData from "../logos/logos.json"
+
+export type LogoData = {
+  name:string,
+  shortname:string,
+  url:string,
+  files:string[],
+}
+
+const logos: Array<LogoData> = logosData;
+
+const selectionOptions = logos.map(logo => ({
+  label: logo.name,
+  value: logo.name,
+}))
+
+
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -20,6 +37,7 @@ const Home: NextPage = () => {
           </a>
         </h1>
         <Selector
+          options={selectionOptions}
         />
 
         <LogoImage
