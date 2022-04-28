@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { ActionMeta } from 'react-select';
 
 interface Option     {
   label: string,
@@ -7,29 +7,21 @@ interface Option     {
 }
 
 interface SelectorProps {
+  value: Option,
+  onChange:(option: Option | null, actionMeta: ActionMeta<Option>) => {
+  },
   options: Option[],
 }
 
 interface SelectorState {
-  selectedOption: Option,
 }
 
 export default class Selector extends React.Component<SelectorProps, SelectorState>  {
-  state: SelectorState = {
-    selectedOption: {label: "Placeholder", value: "Placeholder"},
-  };
-  handleChange = (selectedOption: any) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
-    );
-  };
   render() {
-    const { selectedOption } = this.state;
-
     return (
       <Select
-        value={selectedOption}
-        onChange={this.handleChange}
+        value={this.props.value}
+        onChange={this.props.onChange}
         options={this.props.options}
       />
     );

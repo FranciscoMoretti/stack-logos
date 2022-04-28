@@ -2,24 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import LogoImage from '../components/LogoImage'
-import Selector from '../components/Selector'
-
-import logosData from "../logos/logos.json"
-
-export type LogoData = {
-  name:string,
-  shortname:string,
-  url:string,
-  files:string[],
-}
-
-const logos: Array<LogoData> = logosData;
-
-const selectionOptions = logos.map(logo => ({
-  label: logo.name,
-  value: logo.name,
-}))
-
+import StackEditor from '../components/StackEditor'
 
 const Home: NextPage = () => {
   return (
@@ -36,8 +19,7 @@ const Home: NextPage = () => {
             Next.js!
           </a>
         </h1>
-        <Selector
-          options={selectionOptions}
+        <StackEditor
         />
 
         <LogoImage
