@@ -1,4 +1,5 @@
 import React from 'react';
+import LogoImage from './LogoImage'
 import Selector from './Selector';
 
 
@@ -8,7 +9,7 @@ interface StackEditorProps {
 interface StackEditorState {
 }
 
-import logosData from "../logos/logos.json"
+import logosData from "../public/logos/logos.json"
 
 export type LogoData = {
   name:string,
@@ -24,9 +25,18 @@ const selectionOptions = logos.map(logo => ({
   value: logo.name,
 }))
 
+const imageOfName = new Map(
+  logos.map(logo => {
+   return [logo.name, 
+    '/logos/logos/' + logo.files[0]]
+  })
+);
+
+console.log(imageOfName)
+
 export default class StackEditor extends React.Component<StackEditorProps, StackEditorState>  {
   state: any = {
-    selectedOption: {label: "Placeholder", value: "Placeholder"},
+    selectedOption: {label: "Adyen", value: "Adyen"},
   };
   handleChange = (selectedOption: any) => {
     this.setState({ selectedOption }, () =>
@@ -37,11 +47,18 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
     const { selectedOption } = this.state;
 
     return (
-      <Selector
-        value={this.state.selectedOption}
-        onChange={this.handleChange}
-        options={selectionOptions}
-      />
+      <div className="flex min-h-screen flex-col items-center justify-center py-2">
+        <Selector
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={selectionOptions}
+        />
+        
+        <LogoImage
+          image={imageOfName.get(selectedOption.value)}
+          name='Placeholder'
+        />
+      </div>
     );
   }
 }
