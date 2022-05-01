@@ -11,6 +11,10 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
   componentDidMount(): void {
     this.updateCanvas();
   };
+  
+  componentDidUpdate(): void {
+    this.updateCanvas();
+  };
 
   updateCanvas() {
       const ctx = this.refs.canvas.getContext('2d');
