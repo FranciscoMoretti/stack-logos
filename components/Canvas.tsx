@@ -23,10 +23,11 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
       
       const size = canvas.width / this.props.imageList.length
       for (let i = 0; i < this.props.imageList.length; i++) {
-        var imageObj1 = new Image();
+        let imageObj1 = new Image();
         imageObj1.src = this.props.imageList[i];
         imageObj1.onload = function() {
-          ctx.drawImage(imageObj1, 0 + size*i, 0, size, size);
+          const height = imageObj1.height * (size/imageObj1.width)
+          ctx.drawImage(imageObj1, 0 + size*i, 0, size, height);
         }
       }
       
