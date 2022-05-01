@@ -32,8 +32,6 @@ const imageOfName = new Map(
   })
 );
 
-console.log(imageOfName)
-
 export default class StackEditor extends React.Component<StackEditorProps, StackEditorState>  {
   state: any = {
     selectedOption: {label: "Adyen", value: "Adyen"},
