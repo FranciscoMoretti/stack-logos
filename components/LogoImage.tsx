@@ -12,7 +12,7 @@ interface LogoImageState {
 export default class LogoImage extends React.Component<LogoImageProps,LogoImageState> {
   render() {
     return (
-        <Image
+      <Image
         src={this.props.image}
         alt={this.props.name}
         width={200}
