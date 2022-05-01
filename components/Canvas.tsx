@@ -22,7 +22,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       const maxWidth = canvas.width / this.props.imageList.length 
-      const size = maxWidth < 300 ? maxWidth : 300; 
+      const size = maxWidth < canvas.height ? maxWidth : canvas.height; 
       for (let i = 0; i < this.props.imageList.length; i++) {
         let imageObj1 = new Image();
         imageObj1.src = this.props.imageList[i];
