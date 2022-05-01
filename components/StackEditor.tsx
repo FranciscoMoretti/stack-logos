@@ -1,6 +1,6 @@
 import React from 'react';
 import LogoImage from './LogoImage'
-import Selector from './Selector';
+import Selector, {Option} from './Selector';
 
 
 interface StackEditorProps {
@@ -11,6 +11,7 @@ interface StackEditorState {
 
 import logosData from "../public/logos/logos.json"
 import Canvas from './Canvas';
+import { ActionMeta, MultiValue } from 'react-select';
 
 export type LogoData = {
   name:string,
@@ -35,16 +36,19 @@ const imageOfName = new Map(
 
 export default class StackEditor extends React.Component<StackEditorProps, StackEditorState>  {
   state: any = {
-    selectedOption: {label: "Adyen", value: "Adyen"},
+    selectedOption: [{label: "Adyen", value: "Adyen"}],
   };
-  handleChange = (selectedOption: any) => {
-    this.setState({ selectedOption }, () =>
+  handleChange = (newValue: MultiValue<Option>,  actionMeta: ActionMeta<Option>) => {
+    this.setState({ selectedOption: newValue }, () =>
       console.log(`Option selected:`, this.state.selectedOption)
     );
   };
   render() {
     const { selectedOption } = this.state;
-
+    const imageLIst = selectedOption.map(option => {
+      return imageOfName.get(option.value);
+    })
+    console.log(imageLIst)
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
@@ -52,7 +56,7 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
           onChange={this.handleChange}
           options={selectionOptions}
         />
-        <Canvas imageList={[imageOfName.get(selectedOption.value)]}/>
+        <Canvas imageList={imageLIst}/>
       </div>
     );
   }

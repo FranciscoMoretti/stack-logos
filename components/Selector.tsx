@@ -1,14 +1,14 @@
 import React from 'react';
-import Select, { ActionMeta } from 'react-select';
+import Select, { ActionMeta, GroupBase, MultiValue, Props} from 'react-select';
 
-interface Option     {
+export interface Option     {
   label: string,
   value: string,
 }
 
 interface SelectorProps {
   value: Option,
-  onChange:(option: Option | null, actionMeta: ActionMeta<Option>) => {
+  onChange:(newValue: MultiValue<Option>, actionMeta: ActionMeta<Option>) => {
   },
   options: Option[],
 }
@@ -16,10 +16,20 @@ interface SelectorProps {
 interface SelectorState {
 }
 
+function CustomSelector<
+  Option,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(props: Props<Option, IsMulti, Group>) {
+  return (
+    <Select {...props} theme={(theme) => ({ ...theme, borderRadius: 0 })} />
+  );
+}
+
 export default class Selector extends React.Component<SelectorProps, SelectorState>  {
   render() {
     return (
-      <Select
+      <CustomSelector
         isMulti
         value={this.props.value}
         onChange={this.props.onChange}
