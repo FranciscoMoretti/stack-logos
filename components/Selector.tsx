@@ -20,6 +20,7 @@ export default class Selector extends React.Component<SelectorProps, SelectorSta
   render() {
     return (
       <Select
+        isMulti
         value={this.props.value}
         onChange={this.props.onChange}
         options={this.props.options}
