@@ -10,6 +10,7 @@ interface StackEditorState {
 }
 
 import logosData from "../public/logos/logos.json"
+import Canvas from './Canvas';
 
 export type LogoData = {
   name:string,
@@ -51,7 +52,7 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
           onChange={this.handleChange}
           options={selectionOptions}
         />
-        
+        <Canvas imageList={[imageOfName.get(selectedOption.value)]}/>
         <LogoImage
           image={imageOfName.get(selectedOption.value)}
           name='Placeholder'
