@@ -53,10 +53,6 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
           options={selectionOptions}
         />
         <Canvas imageList={[imageOfName.get(selectedOption.value)]}/>
-        <LogoImage
-          image={imageOfName.get(selectedOption.value)}
-          name='Placeholder'
-        />
       </div>
     );
   }
