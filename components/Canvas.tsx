@@ -30,7 +30,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
   render() {
     return (
       <div>
-      <canvas ref="canvas" width={300} height={300}> </canvas>
+      <canvas ref="canvas" width={700} height={300}> </canvas>
       </div>
     );
   }
