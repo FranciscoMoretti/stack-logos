@@ -18,7 +18,7 @@ export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
       var imageObj1 = new Image();
       imageObj1.src = this.props.imageList[0];
       imageObj1.onload = function() {
-        ctx.drawImage(imageObj1,0,0, 200, 200);
+        ctx.drawImage(imageObj1, 0, 0, 200, 200);
       }
   };
   render() {
