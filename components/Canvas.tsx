@@ -1,46 +1,38 @@
 import React from "react";
 
-interface CanvasProps {
-  imageList: any,
+import { fabric } from "fabric";
+
+export default function Canvas({imageList}) {
+  React.useEffect(() => {
+    const canvas = new fabric.Canvas("canvas");
+
+    const maxWidth = canvas.width / imageList.length 
+    const size = maxWidth < canvas.height ? maxWidth : canvas.height; 
+    for (let i = 0; i < imageList.length; i++) {
+      fabric.loadSVGFromURL(imageList[i], function(objects, options) {
+        var obj = fabric.util.groupSVGElements(objects, options);
+        const height = obj.height * (size/obj.width)
+        obj.set({
+          left: 0 + size*i,
+          top: 0,
+          width: size,
+          height: height,
+          scaleX: size/obj.width,
+          scaleY: size/obj.width,
+        });
+        canvas.add(obj).renderAll();
+      });
+    }
+
+    // UseEffect's cleanup function
+    return () => {
+      canvas.dispose();
+    };
+  }, [imageList]);
+
+  return (
+    <div className="App">
+      <canvas id="canvas" width="700" height="300" />
+    </div>
+  );
 }
-
-interface CanvasState {
-}
-
-export default class Canvas extends React.Component<CanvasProps, CanvasState>  {
-  componentDidMount(): void {
-    this.updateCanvas();
-  };
-
-  componentDidUpdate(): void {
-    this.updateCanvas();
-  };
-
-  updateCanvas() {
-      const canvas = this.refs.canvas
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const maxWidth = canvas.width / this.props.imageList.length 
-      const size = maxWidth < canvas.height ? maxWidth : canvas.height; 
-      for (let i = 0; i < this.props.imageList.length; i++) {
-        let imageObj1 = new Image();
-        imageObj1.src = this.props.imageList[i];
-        imageObj1.onload = function() {
-          const height = imageObj1.height * (size/imageObj1.width)
-          ctx.drawImage(imageObj1, 0 + size*i, 0, size, height);
-        }
-      }
-      
-
-  };
-  render() {
-    return (
-      <div>
-      <canvas ref="canvas" width={700} height={300}> </canvas>
-      </div>
-    );
-  }
-}
-
-
