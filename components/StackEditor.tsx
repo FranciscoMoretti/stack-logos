@@ -48,7 +48,6 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
     const imageLIst = selectedOption.map(option => {
       return imageOfName.get(option.value);
     })
-    console.log(imageLIst)
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
