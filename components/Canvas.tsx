@@ -12,14 +12,14 @@ export default function Canvas({imageList}) {
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        const newobj = scaleObjectToSquare(obj, squareSize);
+        var object = fabric.util.groupSVGElements(objects, options);
+        const scaledObject = scaleObjectToSquare(object, squareSize);
 
-        newobj.set({
+        scaledObject.set({
           left: 0 + squareSize*i,
           top: 0,
         });
-        canvas.add(newobj).renderAll();
+        canvas.add(scaledObject).renderAll();
       });
     }
 
