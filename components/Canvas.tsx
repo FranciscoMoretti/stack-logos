@@ -8,8 +8,11 @@ export default function Canvas({imageList}) {
     const canvas = new fabric.Canvas("canvas");
     const numImages = imageList.length
     
-    const squareOutterBoxSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
+    const canvasWidth = canvas.getWidth()
+    const squareOutterBoxSize = Math.min(canvas.getHeight(), canvasWidth/numImages)
     const squareInnerBoxSize = squareOutterBoxSize - (PADDING_PIXELS * 2)
+
+    const initialCanvasPosition = Math.abs(canvasWidth - squareOutterBoxSize*numImages)/2
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
@@ -18,7 +21,7 @@ export default function Canvas({imageList}) {
         const xExtraSpace = squareOutterBoxSize - scaledObject.getScaledWidth()
         const yExtraSpace = squareOutterBoxSize - scaledObject.getScaledHeight()
         scaledObject.set({
-          left: squareOutterBoxSize*i + xExtraSpace/2,
+          left: initialCanvasPosition + squareOutterBoxSize*i + xExtraSpace/2,
           top: yExtraSpace/2,
         });
         canvas.add(scaledObject).renderAll();
