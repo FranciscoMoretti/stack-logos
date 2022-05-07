@@ -3,16 +3,18 @@ import React from "react";
 import { fabric } from "fabric";
 
 export default function Canvas({imageList}) {
+  const PADDING_PIXELS = 20;
   React.useEffect(() => {
     const canvas = new fabric.Canvas("canvas");
     const numImages = imageList.length
     
     const squareOutterBoxSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
+    const squareInnerBoxSize = squareOutterBoxSize - (PADDING_PIXELS * 2)
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
         const object = fabric.util.groupSVGElements(objects, options);
-        const scaledObject = scaleObjectToSquare(object, squareOutterBoxSize);
+        const scaledObject = scaleObjectToSquare(object, squareInnerBoxSize);
         const xExtraSpace = squareOutterBoxSize - scaledObject.getScaledWidth()
         const yExtraSpace = squareOutterBoxSize - scaledObject.getScaledHeight()
         scaledObject.set({
