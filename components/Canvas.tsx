@@ -7,7 +7,7 @@ export default function Canvas({imageList}) {
     const canvas = new fabric.Canvas("canvas");
     const numImages = imageList.length
     
-    const squareSize = Math.min(canvas.height, canvas.width/numImages)
+    const squareSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
 
 
     for (let i = 0; i < imageList.length; i++) {
