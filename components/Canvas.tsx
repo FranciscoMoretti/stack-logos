@@ -9,7 +9,6 @@ export default function Canvas({imageList}) {
     
     const squareSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
 
-
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
         const object = fabric.util.groupSVGElements(objects, options);
