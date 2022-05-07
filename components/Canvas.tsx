@@ -12,7 +12,7 @@ export default function Canvas({imageList}) {
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
-        var object = fabric.util.groupSVGElements(objects, options);
+        const object = fabric.util.groupSVGElements(objects, options);
         const scaledObject = scaleObjectToSquare(object, squareSize);
 
         scaledObject.set({
