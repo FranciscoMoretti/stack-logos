@@ -13,10 +13,11 @@ export default function Canvas({imageList}) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
         const object = fabric.util.groupSVGElements(objects, options);
         const scaledObject = scaleObjectToSquare(object, squareSize);
-
+        const xExtraSpace = squareSize - scaledObject.getScaledWidth()
+        const yExtraSpace = squareSize - scaledObject.getScaledHeight()
         scaledObject.set({
-          left: 0 + squareSize*i,
-          top: 0,
+          left: squareSize*i + xExtraSpace/2,
+          top: yExtraSpace/2,
         });
         canvas.add(scaledObject).renderAll();
       });
