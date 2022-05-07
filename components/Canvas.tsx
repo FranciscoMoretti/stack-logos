@@ -7,16 +7,16 @@ export default function Canvas({imageList}) {
     const canvas = new fabric.Canvas("canvas");
     const numImages = imageList.length
     
-    const squareSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
+    const squareOutterBoxSize = Math.min(canvas.getHeight(), canvas.getWidth()/numImages)
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
         const object = fabric.util.groupSVGElements(objects, options);
-        const scaledObject = scaleObjectToSquare(object, squareSize);
-        const xExtraSpace = squareSize - scaledObject.getScaledWidth()
-        const yExtraSpace = squareSize - scaledObject.getScaledHeight()
+        const scaledObject = scaleObjectToSquare(object, squareOutterBoxSize);
+        const xExtraSpace = squareOutterBoxSize - scaledObject.getScaledWidth()
+        const yExtraSpace = squareOutterBoxSize - scaledObject.getScaledHeight()
         scaledObject.set({
-          left: squareSize*i + xExtraSpace/2,
+          left: squareOutterBoxSize*i + xExtraSpace/2,
           top: yExtraSpace/2,
         });
         canvas.add(scaledObject).renderAll();
