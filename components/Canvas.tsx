@@ -13,8 +13,8 @@ export default function Canvas({imageList}) {
     const squareOutterBoxSize = Math.min(canvas.getHeight(), canvasWidth/numImages)
     const squareInnerBoxSize = squareOutterBoxSize - (PADDING_PIXELS * 2)
 
-    const initialOutterBoxXPosition = Math.abs(canvasWidth - squareOutterBoxSize*numImages)/2
-    const initialOutterBoxYPosition = Math.abs(canvasHeight - squareOutterBoxSize)/2
+    const gridInitialXPosition = Math.abs(canvasWidth - squareOutterBoxSize*numImages)/2
+    const gridInitialYPosition = Math.abs(canvasHeight - squareOutterBoxSize)/2
 
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
@@ -23,8 +23,8 @@ export default function Canvas({imageList}) {
         const xExtraSpace = squareOutterBoxSize - scaledObject.getScaledWidth()
         const yExtraSpace = squareOutterBoxSize - scaledObject.getScaledHeight()
         scaledObject.set({
-          left: initialOutterBoxXPosition + squareOutterBoxSize*i + xExtraSpace/2,
-          top: initialOutterBoxYPosition + yExtraSpace/2,
+          left: gridInitialXPosition + squareOutterBoxSize*i + xExtraSpace/2,
+          top: gridInitialYPosition + yExtraSpace/2,
         });
         canvas.add(scaledObject).renderAll();
       });
