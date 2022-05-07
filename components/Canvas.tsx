@@ -13,10 +13,7 @@ export default function Canvas({imageList}) {
     for (let i = 0; i < imageList.length; i++) {
       fabric.loadSVGFromURL(imageList[i], function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
-        const origHeight = obj.getScaledWidth()
-        const origWidth = obj.getScaledHeight()
-        const imageScaleFactor = squareSize / Math.max(origHeight, origWidth)
-        const newobj = obj.scale(imageScaleFactor)
+        const newobj = scaleObjectToSquare(obj, squareSize);
 
         newobj.set({
           left: 0 + squareSize*i,
@@ -37,4 +34,12 @@ export default function Canvas({imageList}) {
       <canvas id="canvas" width="700" height="300" />
     </div>
   );
+
+  function scaleObjectToSquare(obj: fabric.Object | fabric.Group, squareSize: number) {
+    const origHeight = obj.getScaledWidth();
+    const origWidth = obj.getScaledHeight();
+    const imageScaleFactor = squareSize / Math.max(origHeight, origWidth);
+    const newobj = obj.scale(imageScaleFactor);
+    return newobj;
+  }
 }
