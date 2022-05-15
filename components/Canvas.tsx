@@ -26,9 +26,10 @@ export default function Canvas({imageList}) {
           left: gridInitialXPosition + squareOutterBoxSize*i + xExtraSpace/2,
           top: gridInitialYPosition + yExtraSpace/2,
         });
-        canvas.add(scaledObject).renderAll();
+        canvas.add(scaledObject);
       });
     }
+    canvas.renderAll()
 
     // UseEffect's cleanup function
     return () => {
