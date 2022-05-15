@@ -1,7 +1,6 @@
 import React from "react";
 
 import { fabric } from "fabric";
-import domtoimage from 'dom-to-image';
 
 export default function Canvas({imageList}) {
   const PADDING_PIXELS = 20;
@@ -38,14 +37,6 @@ export default function Canvas({imageList}) {
     };
   }, [imageList]);
   
-  
-  domtoimage.toPng(document.getElementById('canvas'))
-    .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'my-image-name.jpeg';
-      link.href = dataUrl;
-      link.click();
-  });
 
 
   return (

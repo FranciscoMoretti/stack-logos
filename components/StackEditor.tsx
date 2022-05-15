@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoImage from './LogoImage'
 import Selector, {Option} from './Selector';
-
+import domtoimage from 'dom-to-image';
 
 interface StackEditorProps {
 }
@@ -42,6 +42,14 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
     this.setState({ selectedOption: newValue }, () =>
       console.log(`Option selected:`, this.state.selectedOption)
     );
+      
+    domtoimage.toPng(document.getElementById('canvas'))
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+  });
   };
   render() {
     const { selectedOption } = this.state;
