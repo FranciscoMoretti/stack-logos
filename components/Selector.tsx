@@ -22,7 +22,7 @@ function CustomSelector<
   Group extends GroupBase<Option> = GroupBase<Option>
 >(props: Props<Option, IsMulti, Group>) {
   return (
-    <Select {...props} theme={(theme) => ({ ...theme, borderRadius: 0 })} />
+    <Select instanceId="select" {...props} theme={(theme) => ({ ...theme, borderRadius: 0 })} />
   );
 }
 
