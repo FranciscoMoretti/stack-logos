@@ -7,6 +7,7 @@ interface StackEditorProps {
 }
 
 interface StackEditorState {
+  selectedOption: Array<Option>
 }
 
 import logosData from "../public/logos/logos.json"
@@ -22,7 +23,7 @@ export type LogoData = {
 
 const logos: Array<LogoData> = logosData;
 
-const selectionOptions = logos.map(logo => ({
+const selectionOptions: Array<Option>  = logos.map(logo => ({
   label: logo.name,
   value: logo.name,
 }))
@@ -35,12 +36,12 @@ const imageOfName = new Map(
 );
 
 export default class StackEditor extends React.Component<StackEditorProps, StackEditorState>  {
-  state: any = {
+  state: StackEditorState = {
     selectedOption: [{label: "Adyen", value: "Adyen"}],
   };
   handleChange = (newValue: MultiValue<Option>,  actionMeta: ActionMeta<Option>) => {
-    this.setState({ selectedOption: newValue }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
+    this.setState({ selectedOption: [...newValue] }, () =>
+      console.log(`Options selected:`, this.state.selectedOption)
     );
   };
       
@@ -65,7 +66,7 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
-          value={selectedOption}
+          value={selectedOption[0]}
           onChange={this.handleChange}
           options={selectionOptions}
         />
