@@ -2,7 +2,7 @@ import React from "react";
 
 import { fabric } from "fabric";
 
-export default function Canvas({imageList}) {
+export default function Canvas(imageList: any): JSX.Element {
   const PADDING_PIXELS = 20;
   React.useEffect(() => {
     const canvas = new fabric.Canvas("canvas");
