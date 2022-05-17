@@ -45,13 +45,16 @@ export default class StackEditor extends React.Component<StackEditorProps, Stack
   };
       
   onClickDownloadImage = () => {
-    domtoimage.toPng(document.getElementById('canvas'))
-      .then(function (dataUrl) {
-        var link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
-        link.href = dataUrl;
-        link.click();
-    })
+    let canvas = document.getElementById('canvas')
+    if(canvas){
+      domtoimage.toPng(canvas)
+        .then(function (dataUrl) {
+          var link = document.createElement('a');
+          link.download = 'my-image-name.jpeg';
+          link.href = dataUrl;
+          link.click();
+      })
+    }
   };
 
   render() {
