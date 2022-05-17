@@ -12,11 +12,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to Stack Logos
-        </h1>
-        <StackEditor
-        />
+        <h1 className="text-6xl font-bold">Welcome to Stack Logos</h1>
+        <StackEditor />
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">

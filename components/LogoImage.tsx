@@ -1,15 +1,17 @@
 import Image from 'next/image'
-import React from 'react';
+import React from 'react'
 
 interface LogoImageProps {
-  image: string,
-  name: string,
+  image: string
+  name: string
 }
 
-interface LogoImageState {
-}
+interface LogoImageState {}
 
-export default class LogoImage extends React.Component<LogoImageProps,LogoImageState> {
+export default class LogoImage extends React.Component<
+  LogoImageProps,
+  LogoImageState
+> {
   render() {
     return (
       <Image
@@ -18,6 +20,6 @@ export default class LogoImage extends React.Component<LogoImageProps,LogoImageS
         width={200}
         height={200}
       />
-    );
+    )
   }
 }
