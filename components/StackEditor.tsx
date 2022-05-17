@@ -69,7 +69,7 @@ export default class StackEditor extends React.Component<
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
-          value={selectedOption[0]}
+          value={selectedOption}
           onChange={this.handleChange}
           options={selectionOptions}
         />

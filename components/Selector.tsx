@@ -7,7 +7,7 @@ export interface Option {
 }
 
 interface SelectorProps {
-  value: Option
+  value: MultiValue<Option>
   onChange: (
     newValue: MultiValue<Option>,
     actionMeta: ActionMeta<Option>
