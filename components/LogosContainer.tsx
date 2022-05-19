@@ -15,5 +15,5 @@ export default function LogosContainer({
     ))
   }
 
-  return <div className="App">{imageListToLogoImages(imageList)}</div>
+  return <div className="">{imageListToLogoImages(imageList)}</div>
 }
