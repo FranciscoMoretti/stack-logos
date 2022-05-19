@@ -16,15 +16,4 @@ export default function LogosContainer({
   }
 
   return <div className="App">{imageListToLogoImages(imageList)}</div>
-
-  function scaleObjectToSquare(
-    obj: fabric.Object | fabric.Group,
-    squareSize: number
-  ) {
-    const origHeight = obj.getScaledWidth()
-    const origWidth = obj.getScaledHeight()
-    const imageScaleFactor = squareSize / Math.max(origHeight, origWidth)
-    const newobj = obj.scale(imageScaleFactor)
-    return newobj
-  }
 }
