@@ -24,6 +24,7 @@ function CustomSelector<
 >(props: Props<Option, IsMulti, Group>) {
   return (
     <Select
+      className="w-full"
       instanceId="select"
       {...props}
       theme={(theme) => ({ ...theme, borderRadius: 0 })}
