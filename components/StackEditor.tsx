@@ -10,7 +10,7 @@ import { ImageFile, LogoData } from './LogoTypes'
 interface StackEditorProps {}
 
 interface StackEditorState {
-  selectedOption: Array<Option>
+  selectedOptions: Array<Option>
 }
 
 const logos: Array<LogoData> = logosData
@@ -31,14 +31,14 @@ export default class StackEditor extends React.Component<
   StackEditorState
 > {
   state: StackEditorState = {
-    selectedOption: [{ label: 'Adyen', value: 'Adyen' }],
+    selectedOptions: [{ label: 'Adyen', value: 'Adyen' }],
   }
   handleChange = (
     newValue: MultiValue<Option>,
     actionMeta: ActionMeta<Option>
   ) => {
-    this.setState({ selectedOption: [...newValue] }, () =>
-      console.log(`Options selected:`, this.state.selectedOption)
+    this.setState({ selectedOptions: [...newValue] }, () =>
+      console.log(`Options selected:`, this.state.selectedOptions)
     )
   }
 
@@ -55,9 +55,9 @@ export default class StackEditor extends React.Component<
   }
 
   render() {
-    const { selectedOption } = this.state
+    const { selectedOptions } = this.state
     let imageList: Array<ImageFile> = []
-    for (const option of selectedOption) {
+    for (const option of selectedOptions) {
       let path = imageOfName.get(option.value)
       if (path) {
         imageList.push({
@@ -70,7 +70,7 @@ export default class StackEditor extends React.Component<
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
-          value={selectedOption}
+          value={selectedOptions}
           onChange={this.handleChange}
           options={selectionOptions}
         />
