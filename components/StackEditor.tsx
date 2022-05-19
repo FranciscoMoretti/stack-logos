@@ -1,23 +1,16 @@
 import React from 'react'
-import LogoImage from './LogoImage'
 import Selector, { Option } from './Selector'
 import domtoimage from 'dom-to-image'
+import logosData from '../public/logos/logos.json'
+import Canvas from './Canvas'
+import { ActionMeta, MultiValue } from 'react-select'
+import LogosContainer from './LogosContainer'
+import { LogoData } from './LogoTypes'
 
 interface StackEditorProps {}
 
 interface StackEditorState {
   selectedOption: Array<Option>
-}
-
-import logosData from '../public/logos/logos.json'
-import Canvas from './Canvas'
-import { ActionMeta, MultiValue } from 'react-select'
-
-export type LogoData = {
-  name: string
-  shortname: string
-  url: string
-  files: string[]
 }
 
 const logos: Array<LogoData> = logosData
@@ -73,6 +66,7 @@ export default class StackEditor extends React.Component<
           onChange={this.handleChange}
           options={selectionOptions}
         />
+        <LogosContainer imageList={imageLIst} />
         <Canvas imageList={imageLIst} />
         <button onClick={this.onClickDownloadImage}>Download image</button>
       </div>
