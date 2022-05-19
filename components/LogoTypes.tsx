@@ -4,3 +4,8 @@ export type LogoData = {
   url: string
   files: string[]
 }
+
+export type ImageFile = {
+  path: string
+  name: string
+}

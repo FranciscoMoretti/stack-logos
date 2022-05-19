@@ -5,7 +5,7 @@ import logosData from '../public/logos/logos.json'
 import Canvas from './Canvas'
 import { ActionMeta, MultiValue } from 'react-select'
 import LogosContainer from './LogosContainer'
-import { LogoData } from './LogoTypes'
+import { ImageFile, LogoData } from './LogoTypes'
 
 interface StackEditorProps {}
 
@@ -56,9 +56,17 @@ export default class StackEditor extends React.Component<
 
   render() {
     const { selectedOption } = this.state
-    const imageLIst = selectedOption.map((option) => {
-      return imageOfName.get(option.value)
-    })
+    let imageList: Array<ImageFile> = []
+    for (const option of selectedOption) {
+      let path = imageOfName.get(option.value)
+      if (path) {
+        imageList.push({
+          name: option.value,
+          path: path,
+        })
+      }
+    }
+
     return (
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Selector
@@ -66,8 +74,8 @@ export default class StackEditor extends React.Component<
           onChange={this.handleChange}
           options={selectionOptions}
         />
-        <LogosContainer imageList={imageLIst} />
-        <Canvas imageList={imageLIst} />
+        <LogosContainer imageList={imageList} />
+        <Canvas imageList={imageList} />
         <button onClick={this.onClickDownloadImage}>Download image</button>
       </div>
     )

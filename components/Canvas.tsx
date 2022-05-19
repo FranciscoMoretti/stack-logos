@@ -1,8 +1,13 @@
 import React from 'react'
 
 import { fabric } from 'fabric'
+import { ImageFile } from './LogoTypes'
 
-export default function Canvas({ imageList }: { imageList: any }): JSX.Element {
+export default function Canvas({
+  imageList,
+}: {
+  imageList: Array<ImageFile>
+}): JSX.Element {
   const PADDING_PIXELS = 20
   React.useEffect(() => {
     const canvas = new fabric.Canvas('canvas')
@@ -22,7 +27,7 @@ export default function Canvas({ imageList }: { imageList: any }): JSX.Element {
       Math.abs(canvasHeight - squareOutterBoxSize) / 2
 
     for (let i = 0; i < imageList.length; i++) {
-      fabric.loadSVGFromURL(imageList[i], function (objects, options) {
+      fabric.loadSVGFromURL(imageList[i].path, function (objects, options) {
         const object = fabric.util.groupSVGElements(objects, options)
         const scaledObject = scaleObjectToSquare(object, squareInnerBoxSize)
         const xExtraSpace = squareOutterBoxSize - scaledObject.getScaledWidth()
