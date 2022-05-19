@@ -11,9 +11,13 @@ export default function LogosContainer({
 
   function imageListToLogoImages(imageList: Array<ImageFile>) {
     return imageList.map((image) => (
-      <LogoImage image={image.path} name={image.name} />
+      <LogoImage className="m-3" image={image.path} name={image.name} />
     ))
   }
 
-  return <div className="">{imageListToLogoImages(imageList)}</div>
+  function formatLogoImages(logoImageList: Array<JSX.Element>) {
+    return <div className="flex w-full flex-row">{logoImageList}</div>
+  }
+
+  return formatLogoImages(imageListToLogoImages(imageList))
 }
